@@ -132,25 +132,32 @@ static NSTimeInterval g_watchdogInterval = 0;
     KSLOG_DEBUG(@"Calling main crash handler.");
     g_context->onCrash();
     
-    
+    /*
     KSLOG_DEBUG(@"Crash handling complete. Restoring original handlers.");
     kscrashsentry_uninstall(KSCrashTypeAll);
     
     KSLOG_DEBUG(@"Calling abort()");
     abort();
+    
+    */
 }
 
 - (void) runMonitor
 {
     BOOL cancelled = NO;
+    
     do
     {
         // Only do a watchdog check if the watchdog interval is > 0.
         // If the interval is <= 0, just idle until the user changes it.
+        
+        
         as_autoreleasepool_start(POOL);
         {
             NSTimeInterval sleepInterval = g_watchdogInterval;
             BOOL runWatchdogCheck = sleepInterval > 0;
+            
+            NSLog(@"runMonitor sleepInterval: %.1f, runWatchdogCheck: %i", sleepInterval, runWatchdogCheck);
             if(!runWatchdogCheck)
             {
                 sleepInterval = kIdleInterval;
