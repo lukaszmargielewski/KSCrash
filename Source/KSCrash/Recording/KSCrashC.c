@@ -226,7 +226,12 @@ void kscrash_setZombieCacheSize(size_t zombieCacheSize)
 
 void kscrash_setDeadlockWatchdogInterval(double deadlockWatchdogInterval)
 {
+
     kscrashsentry_setDeadlockHandlerWatchdogInterval(deadlockWatchdogInterval);
+
+    KSCrash_Context* context = crashContext();
+    kscrashsentry_installDeadlockHandler(&context->crash);
+    
 }
 
 void kscrash_setPrintTraceToStdout(bool printTraceToStdout)

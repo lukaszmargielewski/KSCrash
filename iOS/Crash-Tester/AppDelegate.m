@@ -60,7 +60,6 @@ static void onCrash(const KSCrashReportWriter* writer)
 #endif
     
     handler.zombieCacheSize = 16384;
-    handler.deadlockWatchdogInterval = 5.0f;
     handler.searchThreadNames = YES;
     handler.searchQueueNames = YES;
     handler.printTraceToStdout = YES;
@@ -77,6 +76,8 @@ static void onCrash(const KSCrashReportWriter* writer)
     handler.deleteBehaviorAfterSendAll = KSCDeleteNever;
 
     [handler install];
+    handler.deadlockWatchdogInterval = 5.0f;
+    
 }
 
 - (BOOL)application:(__unused UIApplication*) application didFinishLaunchingWithOptions:(__unused NSDictionary*) launchOptions
