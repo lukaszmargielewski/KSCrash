@@ -48,7 +48,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
-
+#include <sys/_types/_ucontext64.h>
 
 #ifdef __arm64__
     #define UC_MCONTEXT uc_mcontext64
